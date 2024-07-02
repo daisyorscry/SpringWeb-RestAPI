@@ -11,7 +11,7 @@ The base URL for all endpoints is `/api/products`.
 ### Request
 
 - Method: POST
-- Endpoint: `api/products`
+- Endpoint: `/api/products`
 - Headers:
 - Content-Type: application/json
 
@@ -35,7 +35,7 @@ The base URL for all endpoints is `/api/products`.
 ### Request
 
 - Method: GET
-- Endpoint: `/products`
+- Endpoint: `/api/products`
 - Headers:
 - Content-Type: application/json
 
@@ -77,7 +77,7 @@ The base URL for all endpoints is `/api/products`.
 ### Request
 
 - Method: GET
-- Endpoint: `/products/{id}`
+- Endpoint: `/api/products/{id}`
 - Headers:
 - Content-Type: application/json
 
@@ -100,7 +100,7 @@ The base URL for all endpoints is `/api/products`.
 ### Request
 
 - Method: PUT
-- Endpoint: `/products/{id}`
+- Endpoint: `/api/products/{id}`
 - Headers:
 - Content-Type: application/json
 
@@ -124,7 +124,7 @@ The base URL for all endpoints is `/api/products`.
 ### Request
 
 - Method: DELETE
-- Endpoint: `/products/{id}`
+- Endpoint: `/api/products/{id}`
 - Headers:
 - Content-Type: application/json
 
