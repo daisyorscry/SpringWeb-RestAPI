@@ -1,62 +1,91 @@
-Desain ERD (Entity-Relationship Diagram)
-Entity: Product
+# Product API Documentation
 
-Fields: id (PK), name, description, price, created_at, updated_at
-Contoh Request & Response JSON REST API
-List Products
+This API allows you to manage products including listing, retrieving by ID, creating, updating, and deleting products.
 
-Request:
+## Base URL
 
-Method: GET
-Endpoint: /products
-Headers:
-bash
-Copy code
-Content-Type: application/json
-Body: (empty)
-Response:
+The base URL for all endpoints is `/api/products`.
 
-json
-Copy code
+### Create Product
+
+### Request
+
+- Method: POST
+- Endpoint: `api/products`
+- Headers:
+- Content-Type: application/json
+
+
+### Response
+
+```
 {
-  "status": "success",
-  "data": [
+  "name": "ProductA",
+  "description": "Description of Product C",
+  "createdAt": "2024-07-03T10:00:00Z",
+  "createdBy": "Admin",
+  "updatedAt": "2024-07-03T10:00:00Z",
+  "updatedBy": "Admin"
+}
+```
+
+
+## FetchAll Products
+
+### Request
+
+- Method: GET
+- Endpoint: `/products`
+- Headers:
+- Content-Type: application/json
+
+### Response
+
+
+```
     {
-      "id": 1,
-      "name": "Product A",
-      "description": "Description of Product A",
-      "price": 50.00,
-      "created_at": "2024-07-02T08:00:00Z",
-      "updated_at": "2024-07-02T08:30:00Z"
+        "id": 1,
+        "name": "ProductA",
+        "description": "Description of Product C",
+        "createdAt": "2024-07-03T10:00:00",
+        "createdBy": "Admin",
+        "updatedAt": "2024-07-03T10:00:00",
+        "updatedBy": "Admin"
     },
     {
-      "id": 2,
-      "name": "Product B",
-      "description": "Description of Product B",
-      "price": 75.00,
-      "created_at": "2024-07-01T09:00:00Z",
-      "updated_at": "2024-07-02T10:15:00Z"
+        "id": 2,
+        "name": "ProductA",
+        "description": "Description of Product C",
+        "createdAt": "2024-07-03T10:00:00",
+        "createdBy": "Admin",
+        "updatedAt": "2024-07-03T10:00:00",
+        "updatedBy": "Admin"
+    },
+    {
+        "id": 3,
+        "name": "ProductA",
+        "description": "Description of Product C",
+        "createdAt": "2024-07-03T10:00:00",
+        "createdBy": "Admin",
+        "updatedAt": "2024-07-03T10:00:00",
+        "updatedBy": "Admin"
     }
-  ]
-}
-Get Products by ID
+```
 
-Request:
+### Get Products by ID
 
-Method: GET
-Endpoint: /products/{id}
-Headers:
-bash
-Copy code
-Content-Type: application/json
-Body: (empty)
-Response:
+### Request
 
-json
-Copy code
-{
-  "status": "success",
-  "data": {
+- Method: GET
+- Endpoint: `/products/{id}`
+- Headers:
+- Content-Type: application/json
+
+
+### Response
+
+```
+  {
     "id": 1,
     "name": "Product A",
     "description": "Description of Product A",
@@ -64,75 +93,49 @@ Copy code
     "created_at": "2024-07-02T08:00:00Z",
     "updated_at": "2024-07-02T08:30:00Z"
   }
-}
-Update Products
+```
 
-Request:
+### Update Product By Id
 
-Method: PUT
-Endpoint: /products/{id}
-Headers:
-bash
-Copy code
-Content-Type: application/json
-Body:
-json
-Copy code
+### Request
+
+- Method: PUT
+- Endpoint: `/products/{id}`
+- Headers:
+- Content-Type: application/json
+
+
+### Response
+
+```
 {
-  "name": "Updated Product A",
-  "description": "Updated Description of Product A",
-  "price": 60.00
+    "id": 1,
+    "name": "Product C",
+    "description": "Description of Product C",
+    "createdAt": "2024-07-03T10:00:00",
+    "createdBy": "user",
+    "updatedAt": "2024-07-03T10:00:00",
+    "updatedBy": "user"
 }
-Response:
+```
 
-json
-Copy code
+### Delete Product By Id
+
+### Request
+
+- Method: DELETE
+- Endpoint: `/products/{id}`
+- Headers:
+- Content-Type: application/json
+
+
+### Response
+
+```
 {
-  "status": "success",
-  "message": "Product updated successfully"
 }
-Create Products
 
-Request:
+```
 
-Method: POST
-Endpoint: /products
-Headers:
-bash
-Copy code
-Content-Type: application/json
-Body:
-json
-Copy code
-{
-  "name": "New Product",
-  "description": "Description of New Product",
-  "price": 100.00
-}
-Response:
 
-json
-Copy code
-{
-  "status": "success",
-  "message": "Product created successfully"
-}
-Delete Products by ID
-
-Request:
-
-Method: DELETE
-Endpoint: /products/{id}
-Headers:
-bash
-Copy code
-Content-Type: application/json
-Body: (empty)
-Response:
-
-json
-Copy code
-{
-  "status": "success",
-  "message": "Product deleted successfully"
-}
+```
