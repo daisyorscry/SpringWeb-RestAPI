@@ -8,15 +8,13 @@ The base URL for all endpoints is `/api/products`.
 
 ### Create Product
 
-### Request
-
 - Method: POST
 - Endpoint: `/api/products`
 - Headers:
 - Content-Type: application/json
 
+### Request
 
-### Response
 
 ```
 {
@@ -26,6 +24,26 @@ The base URL for all endpoints is `/api/products`.
   "createdBy": "Admin",
   "updatedAt": "2024-07-03T10:00:00Z",
   "updatedBy": "Admin"
+}
+```
+
+
+### Response
+
+```
+
+{
+  {
+
+  }
+  data{
+  "name": "ProductA",
+  "description": "Description of Product C",
+  "createdAt": "2024-07-03T10:00:00Z",
+  "createdBy": "Admin",
+  "updatedAt": "2024-07-03T10:00:00Z",
+  "updatedBy": "Admin"
+  }
 }
 ```
 
