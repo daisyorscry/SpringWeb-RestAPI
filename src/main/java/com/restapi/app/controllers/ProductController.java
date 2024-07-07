@@ -35,7 +35,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public ResponseData<List<ProductResponse>> getAllProducts(User user) {
+    public ResponseData<List<ProductResponse>> getAllProducts(User user) 
+    {
         List<ProductResponse> productResponse = productService.getAllProducts();
 
         return ResponseData.<List<ProductResponse>>builder()
@@ -51,7 +52,8 @@ public class ProductController {
     public ResponseData<ProductResponse> updateProduct(
             @PathVariable Long id,
             @RequestBody UpdateProductRequest request,
-            User user) {
+            User user) 
+    {
         
         Optional<ProductResponse> productResponse = productService.updateProduct(id, user, request);
 
@@ -76,7 +78,9 @@ public class ProductController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-     public ResponseData<ProductResponse> save(@RequestBody @Valid CreateProductRequest request, BindingResult result, User user) {
+     public ResponseData<ProductResponse> save(@RequestBody @Valid CreateProductRequest request, BindingResult result, User user) 
+     {
+        
         if (result.hasErrors()) {
             Map<String, String> errors = result.getFieldErrors().stream()
                     .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
@@ -100,8 +104,10 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseData<ProductResponse> findById(User user, @PathVariable Long id) {
+    public ResponseData<ProductResponse> findById(User user, @PathVariable Long id) 
+    {
         Optional<ProductResponse> productResponse = productService.findById(id);
+    
         if (productResponse.isPresent()) {
             return ResponseData.<ProductResponse>builder()
                 .data(productResponse.get())
@@ -120,8 +126,10 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseData<Void> deleteProduct(User user, @PathVariable Long id) {
+    public ResponseData<Void> deleteProduct(User user, @PathVariable Long id) 
+    {
         boolean isDeleted = productService.deleteProduct(id);
+    
         if (isDeleted) {
             return ResponseData.<Void>builder()
                 .data(null)

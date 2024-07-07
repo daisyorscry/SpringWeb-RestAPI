@@ -25,7 +25,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Register User
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -33,6 +32,7 @@ public class UserController {
     public ResponseData<String> register(@Valid @RequestBody RegisterUserRequest request) 
     {
         userService.register(request);
+     
         return ResponseData.<String>builder()
                     .data("OK")
                     .success(true)
@@ -40,7 +40,6 @@ public class UserController {
                     .build();
     }
 
-    // Get User
     @GetMapping(
         path = "/current",
         produces = MediaType.APPLICATION_JSON_VALUE
@@ -48,6 +47,7 @@ public class UserController {
     public ResponseData<UserResponse> get(User user)
     {
         UserResponse userResponse = userService.get(user);
+     
         return ResponseData.<UserResponse>builder()
                     .data(userResponse)
                     .success(true)
@@ -63,6 +63,7 @@ public class UserController {
     public ResponseData<UserResponse> update(User user, @RequestBody UpdateUserRequest request)
     {
         UserResponse userResponse  = userService.update(user, request);
+     
         return ResponseData.<UserResponse>builder()
             .data(userResponse)
             .success(true)
