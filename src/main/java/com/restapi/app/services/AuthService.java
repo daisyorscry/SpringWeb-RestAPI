@@ -5,15 +5,15 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.restapi.app.models.Requests.Users.LoginUserRequest;
-import com.restapi.app.models.Responses.UserResponses.TokenResponse;
+import com.restapi.app.dto.Requests.Users.LoginUserRequest;
+import com.restapi.app.dto.Responses.UserResponses.TokenResponse;
 import com.restapi.app.models.entitiies.User;
 import com.restapi.app.models.respositories.UserRepository;
 import com.restapi.app.security.BCrypt;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class AuthService {

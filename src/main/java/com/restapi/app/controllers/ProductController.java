@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.app.dto.ResponseData;
-import com.restapi.app.models.Requests.Products.CreateProductRequest;
-import com.restapi.app.models.Requests.Products.UpdateProductRequest;
-import com.restapi.app.models.Responses.ProductResponses.ProductResponse;
+import com.restapi.app.dto.Requests.Products.CreateProductRequest;
+import com.restapi.app.dto.Requests.Products.UpdateProductRequest;
+import com.restapi.app.dto.Responses.ProductResponses.ProductResponse;
 import com.restapi.app.models.entitiies.User;
 import com.restapi.app.services.ProductService;
 

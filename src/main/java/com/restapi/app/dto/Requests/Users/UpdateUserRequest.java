@@ -1,6 +1,5 @@
-package com.restapi.app.models.Requests.Users;
+package com.restapi.app.dto.Requests.Users;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class LoginUserRequest 
-{
+public class UpdateUserRequest {
+    
+    @Size(max = 100)
+    private String name;
 
-    @NotEmpty(message = "username is required")
     @Size(max = 100)
     private String username;
 
-    @NotEmpty(message = "username is required")
     @Size(max = 100)
     private String password;
-    
+
+
 }

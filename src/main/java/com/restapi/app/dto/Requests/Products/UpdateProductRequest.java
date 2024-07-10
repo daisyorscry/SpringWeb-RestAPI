@@ -1,4 +1,4 @@
-package com.restapi.app.models.Responses.UserResponses;
+package com.restapi.app.dto.Requests.Products;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TokenResponse 
+public class UpdateProductRequest 
 {
-    private String token;
-    
-    private Long expiredAt;
+    private String product_name;
+
+    private String product_desc;
 }

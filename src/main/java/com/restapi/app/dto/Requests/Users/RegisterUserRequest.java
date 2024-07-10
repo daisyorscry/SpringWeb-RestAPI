@@ -1,4 +1,4 @@
-package com.restapi.app.models.Requests.Users;
+package com.restapi.app.dto.Requests.Users;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

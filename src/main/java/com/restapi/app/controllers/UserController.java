@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.app.dto.ResponseData;
-import com.restapi.app.models.Requests.Users.RegisterUserRequest;
-import com.restapi.app.models.Requests.Users.UpdateUserRequest;
-import com.restapi.app.models.Responses.UserResponses.UserResponse;
+import com.restapi.app.dto.Requests.Users.RegisterUserRequest;
+import com.restapi.app.dto.Requests.Users.UpdateUserRequest;
+import com.restapi.app.dto.Responses.UserResponses.UserResponse;
 import com.restapi.app.models.entitiies.User;
 import com.restapi.app.services.UserService;
 

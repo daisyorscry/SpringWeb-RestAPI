@@ -1,4 +1,4 @@
-package com.restapi.app.models.Requests.Products;
+package com.restapi.app.dto.Requests.Products;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateProductRequest {
  
+    
     @NotEmpty(message = "Product name is required")
     @Size(max = 100, message = "Product description is too long")
     private String product_name;

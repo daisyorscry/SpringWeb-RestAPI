@@ -5,16 +5,15 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.restapi.app.models.Requests.Users.RegisterUserRequest;
-import com.restapi.app.models.Requests.Users.UpdateUserRequest;
-import com.restapi.app.models.Responses.UserResponses.UserResponse;
+import com.restapi.app.dto.Requests.Users.RegisterUserRequest;
+import com.restapi.app.dto.Requests.Users.UpdateUserRequest;
+import com.restapi.app.dto.Responses.UserResponses.UserResponse;
 import com.restapi.app.models.entitiies.User;
 import com.restapi.app.models.respositories.UserRepository;
 import com.restapi.app.security.BCrypt;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class UserService 
@@ -27,7 +26,7 @@ public class UserService
     private ValidationService validationService;
 
     @Transactional
-    public void register(RegisterUserRequest request)
+    public void register(RegisterUserRequest request) 
     {
         validationService.validate(request);
 

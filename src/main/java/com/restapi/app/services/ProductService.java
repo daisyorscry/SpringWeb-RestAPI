@@ -8,22 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.restapi.app.models.Requests.Products.CreateProductRequest;
-import com.restapi.app.models.Requests.Products.UpdateProductRequest;
-import com.restapi.app.models.Responses.ProductResponses.ProductResponse;
+import com.restapi.app.dto.Requests.Products.CreateProductRequest;
+import com.restapi.app.dto.Requests.Products.UpdateProductRequest;
+import com.restapi.app.dto.Responses.ProductResponses.ProductResponse;
 import com.restapi.app.models.entitiies.Product;
 import com.restapi.app.models.entitiies.User;
-import com.restapi.app.models.respositories.ProducsRepository;
+import com.restapi.app.models.respositories.ProductRepository;
+
 
 @Service
 public class ProductService {
 
     @Autowired
-    private ProducsRepository productsRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     private ValidationService validationService;
     
+    @Transactional
     public ProductResponse save(User user, CreateProductRequest request ) 
     {
         validationService.validate(request);
@@ -35,27 +37,29 @@ public class ProductService {
         product.setCreatedAt(LocalDateTime.now());
         product.setUpdatedBy(user);
         product.setUpdatedAt(LocalDateTime.now());
-        productsRepository.save(product);
+        productRepository.save(product);
 
         return toProductResponse(product);
     }
 
+    @Transactional
     public Optional<ProductResponse> updateProduct(Long id, User user, UpdateProductRequest request) 
     {
         validationService.validate(request);
-        Optional<Product> existingProduct = productsRepository.findById(id);
+        Optional<Product> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             Product product = existingProduct.get();
             product.setProduct_name(request.getProduct_name());
             product.setProduct_desc(request.getProduct_desc());
             product.setUpdatedBy(user);
             product.setUpdatedAt(LocalDateTime.now());
-            productsRepository.save(product);
+            productRepository.save(product);
             return Optional.of(toProductResponse(product));
         }
         return Optional.empty();
     }
 
+    @Transactional
     private ProductResponse toProductResponse(Product product)
     {
         return ProductResponse.builder()
@@ -71,7 +75,7 @@ public class ProductService {
     @Transactional(readOnly = true)
     public List<ProductResponse> getAllProducts() 
     {
-        List<Product> products = productsRepository.findAll();
+        List<Product> products = productRepository.findAll();
         return products.stream()
             .map(this::toProductResponse).toList();
     }
@@ -79,16 +83,16 @@ public class ProductService {
     @Transactional(readOnly = true)
     public Optional<ProductResponse> findById(Long id) 
     {
-        Optional<Product> product = productsRepository.findById(id);
+        Optional<Product> product = productRepository.findById(id);
         return product.map(this::toProductResponse);
     }
 
     @Transactional
     public boolean deleteProduct(Long id) 
     {
-        Optional<Product> product = productsRepository.findById(id);
+        Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
-            productsRepository.delete(product.get());
+            productRepository.delete(product.get());
             return true;
         }
         return false;

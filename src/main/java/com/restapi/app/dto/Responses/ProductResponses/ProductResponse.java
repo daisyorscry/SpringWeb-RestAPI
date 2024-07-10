@@ -1,4 +1,4 @@
-package com.restapi.app.models.Responses.ProductResponses;
+package com.restapi.app.dto.Responses.ProductResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

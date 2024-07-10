@@ -1,10 +1,11 @@
 package com.restapi.app.models.entitiies;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,33 +22,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name ="tabel_product")
-public class Product implements Serializable 
+@Table(name = "inventory_details")
+public class InventoryDetails implements Serializable
 {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_name")
-    private String product_name;
-
-    @Column(columnDefinition = "TEXT",  name = "product_desc")
-    private String product_desc;
-
     @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User createdBy;
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @ManyToOne
-    @JoinColumn(name = "updated_by")
-    private User updatedBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-
+    @Column(name = "stock")
+    private Integer stock;
+    
 }

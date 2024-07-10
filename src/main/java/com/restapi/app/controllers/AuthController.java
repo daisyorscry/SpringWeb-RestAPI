@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.app.dto.ResponseData;
-import com.restapi.app.models.Requests.Users.LoginUserRequest;
-import com.restapi.app.models.Responses.UserResponses.TokenResponse;
+import com.restapi.app.dto.Requests.Users.LoginUserRequest;
+import com.restapi.app.dto.Responses.UserResponses.TokenResponse;
 import com.restapi.app.models.entitiies.User;
 import com.restapi.app.services.AuthService;
 
