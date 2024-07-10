@@ -104,9 +104,11 @@
 ```
 ### Response body (success)
 
+```
 {
     "create inventory success"
 }
+```
 
 
 ####################################################################################
@@ -141,9 +143,12 @@
 ```
 ### Response body (success if remove) 
 
+```
 {
     "chance product success"
 }
+
+```
 
 ### Request Body: stock < 0
 
@@ -159,6 +164,8 @@
 
 ### Response body (success if remove) 
 
+```
 {
     "Insufficient stock. Available: 30, Requested: 31"
 }
+```
