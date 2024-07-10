@@ -48,7 +48,11 @@ public class ProductController {
             
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(
+        path = "/{id}",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public ResponseData<ProductResponse> updateProduct(
             @PathVariable Long id,
             @RequestBody UpdateProductRequest request,

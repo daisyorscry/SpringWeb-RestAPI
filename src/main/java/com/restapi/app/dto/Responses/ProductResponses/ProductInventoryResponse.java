@@ -11,11 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductInventoryResponse {
     
-    // "product_name" : "product name",
-    // "product_desc" : "product desc",
-    // "price"         : 10000
-    // "stock"         : 50
-    // "status"        : AVAILABLE
 
     private String product_name;
 

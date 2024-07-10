@@ -5,7 +5,7 @@
 
 ### get inventory
 
-- Method: POST
+- Method: GET
 - Endpoint: `/api/inventory`
 - Content-Type: application/json
 
@@ -17,228 +17,148 @@
 
 ```
 {
-    "data": 
-    [
-        {
-        "product_name" : "product name",
-        "product_desc" : "product desc",
-        "price"         : 10000
-        "stock"         : 50
-        "status"        : AVAILABLE
+  "data": [
+    {
+      "inventoryId": 1,
+      "productId": 1,
+      "productName": "handphone",
+      "productDesc": "this is product A",
+      "price": 100000.0,
+      "stock": 10,
+      "status": "AVAILABLE",
+      "createdByUsername": "admin",
+      "createdAt": "2024-07-09T15:56:33.459847"
     },
-        {
-        "product_name" : "product name",
-        "product_desc" : "product desc",
-        "price"         : 10000
-        "stock"         : 50
-        "status"        : AVAILABLE
+    {
+      "inventoryId": 12,
+      "productId": 2,
+      "productName": "Labtob",
+      "productDesc": "this is product B",
+      "price": 300000.0,
+      "stock": 0,
+      "status": "LOST",
+      "createdByUsername": "admin",
+      "createdAt": "2024-07-09T15:56:45.338313"
     },
-        {
-        "product_name" : "product name",
-        "product_desc" : "product desc",
-        "price"         : 10000
-        "stock"         : 50
-        "status"        : AVAILABLE
-        },
-    ]
-
-    "errors": null,
-    "success": true,
-    "message": "get all product successfully"
+    {
+      "inventoryId": 13,
+      "productId": 2,
+      "productName": "Labtob",
+      "productDesc": "this is product B",
+      "price": 300000.0,
+      "stock": 0,
+      "status": "LOST",
+      "createdByUsername": "admin",
+      "createdAt": "2024-07-09T15:56:45.338313"
+    },
+    {
+      "inventoryId": 14,
+      "productId": 2,
+      "productName": "Labtob",
+      "productDesc": "this is product B",
+      "price": 300000.0,
+      "stock": 0,
+      "status": "LOST",
+      "createdByUsername": "admin",
+      "createdAt": "2024-07-09T15:56:45.338313"
+    },
+    {
+      "inventoryId": 15,
+      "productId": 3,
+      "productName": "Mobil",
+      "productDesc": "this is product C",
+      "price": 300000.0,
+      "stock": 0,
+      "status": "LOST",
+      "createdByUsername": "admin",
+      "createdAt": "2024-07-09T15:57:00.666425"
+    }
+  ],
+  "errors": null,
+  "success": true,
+  "message": "Inventory fetched successfully"
 }
 ```
-### Response body(failed)
 
-```
-{
-    "data": null,
-    "errors": {
-        "product_desc": "Product description is required",
-        "product_name": "Product name is required"
-    },
-    "success": false,
-    "message": "Validation errors"
-}
-```
 
 ####################################################################################
 ####################################################################################
 
-### Find Product By ID
+### Create inventory
 
 - Method: POST
-- Endpoint: `/api/products/{id}`
-- Content-Type: application/json
-
-
-### Request Headers:
-
-  - x-token: `ab5fcc51-49a8-49d3-8fe2-4d856fafe042`
-
-### Response body (success)
-
-```
-{
-    "data": {
-        "productName": "new product",
-        "productDesc": "product ....................",
-        "createdBy": "user",
-        "createdAt": "2024-07-07T03:16:56.849257",
-        "updatedBy": "user",
-        "updatedAt": "2024-07-07T03:16:56.849301"
-    },
-    "errors": null,
-    "success": true,
-    "message": "Product fetched successfully"
-}
-```
-### Response body(failed)
-
-```
-{
-    "data": null,
-    "errors": {
-        "id": "Product not found"
-    },
-    "success": false,
-    "message": "Product not found"
-}
-```
-####################################################################################
-####################################################################################
-
-### Find All Product
-
-- Method: POST
-- Endpoint: `/api/products`
+- Endpoint: `/api/inventory/create`
 - Content-Type: application/json
 
 ### Request Headers:
 
   - x-token: `ab5fcc51-49a8-49d3-8fe2-4d856fafe042`
 
-### Response body (success)
+### Request Body:
 
-```
+ ```
 {
-    "data": [
-        {
-            "productName": "ProductA",
-            "productDesc": "Description of Product A",
-            "createdBy": "usears",
-            "createdAt": "2024-07-07T02:22:34.055318",
-            "updatedBy": "usears",
-            "updatedAt": "2024-07-07T02:22:34.055325"
-        },
-        {
-            "productName": "Product aku sudah update",
-            "productDesc": "Description of Product C",
-            "createdBy": "usears",
-            "createdAt": "2024-07-06T17:21:19.985763",
-            "updatedBy": "usears",
-            "updatedAt": "2024-07-07T02:38:58.046160"
-        },
-        {
-            "productName": "new product",
-            "productDesc": "product ....................",
-            "createdBy": "user",
-            "createdAt": "2024-07-07T03:16:56.849257",
-            "updatedBy": "user",
-            "updatedAt": "2024-07-07T03:16:56.849301"
-        }
-    ],
-    "errors": null,
-    "success": true,
-    "message": "Products fetched successfully"
+  "productId" : 3,
+  "price" : 300000
 }
 ```
+### Response body (success)
+
+{
+    "create inventory success"
+}
+
 
 ####################################################################################
 ####################################################################################
 
-### Update Product By ID
+### Create inventory
 
 - Method: POST
-- Endpoint: `/api/products/{id}`
+- Endpoint: `/api/inventory/chance-stock`
 - Content-Type: application/json
+
+<!-- (status AVAILABLE or BAD) -->
+<!-- (if stock === 0 auto set status LOSS) -->
+<!-- (if stock remove <= 0 {
+        throw new RuntimeException("Insufficient stock. Available: " + currentStock + ", Requested: " + Math.abs(request.getQuantity()));
+ }-->
 
 ### Request Headers:
 
   - x-token: `ab5fcc51-49a8-49d3-8fe2-4d856fafe042`
 
+### Request Body:
 
-### Request body
+ ```
+{
+  "productId" : "13",
+  "chanceType" : "REMOVE",
+  "quantity" : 30,
+  "status" : "AVAILABLE" 
+ }
 
 ```
+### Response body (success if remove) 
+
 {
-    "product_name" : "new product",
-    "product_desc": "product ...................."
+    "chance product success"
 }
 
-```
-### Response body (success)
+### Request Body: stock < 0
 
-```
+ ```
 {
-    "data": {
-        "productName": "new product update",
-        "productDesc": "product .................... update",
-        "createdBy": "user",
-        "createdAt": "2024-07-07T03:16:56.849257",
-        "updatedBy": "user",
-        "updatedAt": "2024-07-07T03:24:46.511974080"
-    },
-    "errors": null,
-    "success": true,
-    "message": "Product updated successfully"
-}
-```
-### Response body(failed)
+  "productId" : "13",
+  "chanceType" : "ADD",
+  "quantity" : 31,
+  "status" : "AVAILABLE" 
+ }
 
 ```
+
+### Response body (success if remove) 
+
 {
-    "data": null,
-    "errors": {
-        "id": "Product not found"
-    },
-    "success": false,
-    "message": "Product not found"
+    "Insufficient stock. Available: 30, Requested: 31"
 }
-```
-
-
-####################################################################################
-####################################################################################
-
-### Delete Product By ID
-
-- Method: POST
-- Endpoint: `/api/products/{id}`
-- Content-Type: application/json
-
-### Request Headers:
-
-  - x-token: `ab5fcc51-49a8-49d3-8fe2-4d856fafe042`
-
-### Response body (success)
-
-```
-{
-    "data": null,
-    "errors": null,
-    "success": true,
-    "message": "Product deleted successfully"
-}
-```
-### Response body(failed)
-
-```
-{
-    "data": null,
-    "errors": {
-        "id": "Product not found"
-    },
-    "success": false,
-    "message": "Product not found"
-}
-```

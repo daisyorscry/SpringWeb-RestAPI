@@ -36,5 +36,9 @@ public class InventoryDetails implements Serializable
 
     @Column(name = "stock")
     private Integer stock;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="status")
+    private InventoryStatus inventoryStatus;
     
 }

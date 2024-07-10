@@ -3,6 +3,8 @@ package com.restapi.app.dto.Responses.ProductResponses;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.restapi.app.models.entitiies.InventoryStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +21,8 @@ public class InventoryResponse {
     private String productName;
     private String productDesc;
     private Double price;
+    private Integer stock;
+    private InventoryStatus status;
     private String createdByUsername;
     private LocalDateTime createdAt;
 }

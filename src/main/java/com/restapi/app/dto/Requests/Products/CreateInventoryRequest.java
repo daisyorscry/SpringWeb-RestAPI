@@ -14,4 +14,6 @@ public class CreateInventoryRequest
     private Long productId;
         
     private Double price;
+
+    
 }
