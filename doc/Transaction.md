@@ -160,15 +160,9 @@ public void processPayment(TransactionRequest request) {
 
 (Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
 
-- Definisi:
-
 noRollbackFor mendefinisikan satu atau lebih jenis exception yang, ketika dilemparkan, tidak akan menyebabkan rollback transaksi. Exception ini harus merupakan subclass dari Throwable.
 
-- Tujuan:
-
 Kadang-kadang Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi. noRollbackFor memungkinkan Anda untuk menentukan exception-exception yang tidak perlu menyebabkan rollback, sehingga beberapa perubahan dapat tetap dipertahankan meskipun terjadi exception tertentu.
-
-- Penggunaan:
 
 noRollbackFor biasanya digunakan ketika Anda ingin melanjutkan transaksi atau menangani exception secara khusus tanpa kehilangan semua pekerjaan yang sudah dilakukan dalam transaksi tersebut.
 
@@ -198,15 +192,9 @@ Defines zero (0) or more exception name patterns (for exceptions which must be a
 
 noRollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang tidak akan menyebabkan rollback transaksi. Ini mirip dengan noRollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan Anda untuk menentukan exception berdasarkan nama mereka.
 
-- Definisi:
-
 noRollbackForClassName mendefinisikan satu atau lebih nama class exception (dalam bentuk string) yang tidak akan menyebabkan rollback transaksi ketika exception tersebut dilemparkan. Nama exception harus merupakan subclass dari Throwable.
 
-- Tujuan:
-
 Kadang-kadang, Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi, terutama jika exception tersebut hanya mewakili kondisi kesalahan tertentu yang tidak memerlukan rollback. noRollbackForClassName memungkinkan Anda untuk menentukan exception-exception tersebut berdasarkan nama mereka.
-
-- Penggunaan:
 
 noRollbackForClassName biasanya digunakan ketika Anda ingin menggunakan nama class exception sebagai string, yang bisa berguna jika Anda ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika Anda ingin menghindari ketergantungan langsung pada class exception tertentu.
 
@@ -231,15 +219,15 @@ public class MyService {
 
 ```
 
-#Propagation
+# Propagation
 
 propagation adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan bagaimana transaksi harus disebarkan atau dikelola ketika metode beranotasi dipanggil. Ini mengatur bagaimana transaksi baru harus dimulai atau transaksi yang sudah ada harus digunakan atau diubah.
 
 propagation mengatur perilaku transaksi saat metode yang beranotasi dipanggil dalam konteks transaksi yang sudah ada atau tidak ada. Ini menentukan apakah harus memulai transaksi baru, menggunakan transaksi yang ada, atau berbagai perilaku lainnya.
 
 Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel, memungkinkan integrasi yang tepat antara berbagai bagian aplikasi dan penanganan skenario transaksi yang kompleks.
-
-- Jenis-jenis Propagation:
+ 
+### Jenis-jenis Propagation:
 
 - REQUIRED: Propagation default. Jika ada transaksi aktif, metode akan dijalankan dalam transaksi tersebut. Jika tidak ada transaksi, akan memulai transaksi baru.
 - REQUIRES_NEW: Selalu memulai transaksi baru. Jika ada transaksi aktif, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
