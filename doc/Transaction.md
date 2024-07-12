@@ -235,23 +235,19 @@ public class MyService {
 
 propagation adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan bagaimana transaksi harus disebarkan atau dikelola ketika metode beranotasi dipanggil. Ini mengatur bagaimana transaksi baru harus dimulai atau transaksi yang sudah ada harus digunakan atau diubah.
 
-- Definisi:
-
 propagation mengatur perilaku transaksi saat metode yang beranotasi dipanggil dalam konteks transaksi yang sudah ada atau tidak ada. Ini menentukan apakah harus memulai transaksi baru, menggunakan transaksi yang ada, atau berbagai perilaku lainnya.
-
-- Tujuan:
 
 Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel, memungkinkan integrasi yang tepat antara berbagai bagian aplikasi dan penanganan skenario transaksi yang kompleks.
 
 - Jenis-jenis Propagation:
 
--- REQUIRED: Mendukung transaksi saat ini, atau memulai transaksi baru jika belum ada transaksi yang ada.
--- REQUIRES_NEW: Selalu memulai transaksi baru, menangguhkan transaksi yang ada jika ada.
--- NESTED: Memulai transaksi baru dalam transaksi utama yang ada.
--- MANDATORY: Mendukung transaksi saat ini, atau melempar exception jika tidak ada transaksi yang ada.
--- NEVER: Tidak boleh menjalankan transaksi, melempar exception jika ada transaksi yang ada.
--- NOT_SUPPORTED: Tidak mendukung transaksi saat ini, menangguhkan transaksi jika ada.
--- SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru.
+- REQUIRED: Mendukung transaksi saat ini, atau memulai transaksi baru jika belum ada transaksi yang ada.
+- REQUIRES_NEW: Selalu memulai transaksi baru, menangguhkan transaksi yang ada jika ada.
+- NESTED: Memulai transaksi baru dalam transaksi utama yang ada.
+- MANDATORY: Mendukung transaksi saat ini, atau melempar exception jika tidak ada transaksi yang ada.
+- NEVER: Tidak boleh menjalankan transaksi, melempar exception jika ada transaksi yang ada.
+- NOT_SUPPORTED: Tidak mendukung transaksi saat ini, menangguhkan transaksi jika ada.
+- SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru.
 
 ### Contoh Penggunaan
 ``` 
