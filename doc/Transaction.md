@@ -29,29 +29,36 @@ Penggunaan Transaksi:
 
 # https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html 
 
+### Property dalam anotasi @Transaction
 
+## Isolation (The transaction isolation level.)
 
+# Skenario
 
-Property dalam anotasi @Transaction
-
-Isolation (The transaction isolation level.)
-Skenario
 Kita akan menggunakan dua transaksi (Transaction A dan Transaction B) untuk menguji perilaku berbagai level isolasi.
 Pengaturan Awal:
+
 Di dalam database, terdapat tabel Product dengan satu baris data:
-id: 1
-name: "Product A"
-quantity: 100
-Level Isolasi: READ_UNCOMMITTED
+- id: 1
+- name: "Product A"
+- quantity: 100
+
+## Level Isolasi: READ_UNCOMMITTED
+
 Deskripsi:
+
 Level isolasi ini memungkinkan transaksi membaca data yang belum di-commit oleh transaksi lain. Hal ini dapat menyebabkan dirty reads.
 Skenario:
-Transaction A memulai dan membaca quantity dari Product dengan id=1.
-Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
-Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 120 (dirty read).
-Transaction B melakukan rollback sehingga perubahan tidak di-commit.
+
+- Transaction A memulai dan membaca quantity dari Product dengan id=1.
+- Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
+- Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 120 (dirty read).
+- Transaction B melakukan rollback sehingga perubahan tidak di-commit.
+
 Hasil:
-Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
+
+# Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
+
 Level Isolasi: READ_COMMITTED
 Deskripsi:
 Level isolasi ini mencegah dirty reads. Transaksi hanya dapat melihat data yang telah di-commit oleh transaksi lain.
