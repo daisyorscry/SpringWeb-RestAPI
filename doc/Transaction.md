@@ -43,11 +43,12 @@ Di dalam database, terdapat tabel Product dengan satu baris data:
 - name: "Product A"
 - quantity: 100
 
-### Level Isolasi: READ_UNCOMMITTED
+### Isolation Level: READ_UNCOMMITTED
 
 Deskripsi:
 
 Level isolasi ini memungkinkan transaksi membaca data yang belum di-commit oleh transaksi lain. Hal ini dapat menyebabkan dirty reads.
+
 Skenario:
 
 - Transaction A memulai dan membaca quantity dari Product dengan id=1.
@@ -59,11 +60,12 @@ Hasil:
 
 Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
 
-### Level Isolasi: READ_COMMITTED
+### Isolation Level: READ_COMMITTED
 
 Deskripsi:
 
 Level isolasi ini mencegah dirty reads. Transaksi hanya dapat melihat data yang telah di-commit oleh transaksi lain.
+
 Skenario:
 
 - Transaction A memulai dan membaca quantity dari Product dengan id=1.
@@ -76,11 +78,12 @@ Hasil:
 
 Transaction A hanya melihat perubahan setelah Transaction B melakukan commit.
 
-### Level Isolasi: REPEATABLE_READ
+### Isolation Level: REPEATABLE_READ
 
 Deskripsi:
 
 Level isolasi ini mencegah dirty reads dan non-repeatable reads. Transaksi akan melihat data yang konsisten pada setiap baca selama transaksi berlangsung.
+
 Skenario:
 
 - Transaction A memulai dan membaca quantity dari Product dengan id=1.
@@ -94,11 +97,12 @@ Hasil:
 - Transaction A melihat data yang sama di setiap baca meskipun 
 - Transaction B telah melakukan commit.
 
-### Level Isolasi: SERIALIZABLE
+### Isolation Level: SERIALIZABLE
 
 Deskripsi:
 
 Level isolasi ini adalah yang tertinggi dan mencegah dirty reads, non-repeatable reads, dan phantom reads. Transaksi dieksekusi seolah-olah secara serial.
+
 Skenario:
 
 - Transaction A memulai dan membaca quantity dari Product dengan id=1.
@@ -120,12 +124,18 @@ Kesimpulan
 
 # Label (Defines zero (0) or more transaction labels.)
 
-Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
+- Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
 
-Seleksi Transaksi: Dalam beberapa kasus, Anda mungkin memiliki beberapa definisi transaksi yang berbeda untuk berbagai keperluan dalam aplikasi Anda. Dengan menggunakan label, Anda dapat memilih transaksi yang tepat untuk digunakan dalam kasus tertentu.
+- Seleksi Transaksi: Dalam beberapa kasus, Anda mungkin memiliki beberapa definisi transaksi yang berbeda untuk berbagai keperluan dalam aplikasi Anda. Dengan menggunakan label, Anda dapat memilih transaksi yang tepat untuk digunakan dalam kasus tertentu.
 
-Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan Anda untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis Anda.
+- Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan Anda untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis Anda.
 
+```
+@Transactional("transactionManager")
+public void processPayment(TransactionRequest request) {
+    // Proses pembayaran
+}
+```
 
 noRollbackFor (Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
 
