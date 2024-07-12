@@ -33,6 +33,16 @@ Penggunaan Transaksi:
 
 # Isolation (The transaction isolation level.)
 
+### Contoh Penggunaan
+
+```
+/// || DEFAULT || READ_UNCOMMITTED || READ_COMMITTED, REPEATABLE_READ ||  SERIALIZABLE
+@Transactional(isolation = Isolation.REPEATABLE_READ) 
+public void processPayment(TransactionRequest request) {
+    // Proses pembayaran
+}
+```
+
 ## Skenario
 
 Kita akan menggunakan dua transaksi (Transaction A dan Transaction B) untuk menguji perilaku berbagai level isolasi.
@@ -42,6 +52,10 @@ Di dalam database, terdapat tabel Product dengan satu baris data:
 - id: 1
 - name: "Product A"
 - quantity: 100
+
+### Isolation Level DEFAULT
+
+Bergantung pada konfigurasi default dari database yang digunakan.
 
 ### Isolation Level: READ_UNCOMMITTED
 
@@ -130,6 +144,7 @@ Kesimpulan
 
 - Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan Anda untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis Anda.
 
+### Contoh Penggunaan
 ```
 @Transactional("transactionManager")
 public void processPayment(TransactionRequest request) {
