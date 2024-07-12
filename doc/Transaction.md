@@ -141,11 +141,11 @@ Kesimpulan
 
 # Label 
 
-- Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
+- Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan kita untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana kita memiliki banyak transaksi dengan konfigurasi yang mirip.
 
-- Seleksi Transaksi: Dalam beberapa kasus, Anda mungkin memiliki beberapa definisi transaksi yang berbeda untuk berbagai keperluan dalam aplikasi Anda. Dengan menggunakan label, Anda dapat memilih transaksi yang tepat untuk digunakan dalam kasus tertentu.
+- Seleksi Transaksi: Dalam beberapa kasus, kita mungkin memiliki beberapa definisi transaksi yang berbeda untuk berbagai keperluan dalam aplikasi kita. Dengan menggunakan label, kita dapat memilih transaksi yang tepat untuk digunakan dalam kasus tertentu.
 
-- Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan Anda untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis Anda.
+- Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan kita untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis kita.
 
 ### Contoh Penggunaan
 
@@ -160,9 +160,9 @@ public void processPayment(TransactionRequest request) {
 
 noRollbackFor mendefinisikan satu atau lebih jenis exception yang, ketika dilemparkan, tidak akan menyebabkan rollback transaksi. Exception ini harus merupakan subclass dari Throwable.
 
-Kadang-kadang Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi. noRollbackFor memungkinkan Anda untuk menentukan exception-exception yang tidak perlu menyebabkan rollback, sehingga beberapa perubahan dapat tetap dipertahankan meskipun terjadi exception tertentu.
+Kadang-kadang kita mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi. noRollbackFor memungkinkan kita untuk menentukan exception-exception yang tidak perlu menyebabkan rollback, sehingga beberapa perubahan dapat tetap dipertahankan meskipun terjadi exception tertentu.
 
-noRollbackFor biasanya digunakan ketika Anda ingin melanjutkan transaksi atau menangani exception secara khusus tanpa kehilangan semua pekerjaan yang sudah dilakukan dalam transaksi tersebut.
+noRollbackFor biasanya digunakan ketika kita ingin melanjutkan transaksi atau menangani exception secara khusus tanpa kehilangan semua pekerjaan yang sudah dilakukan dalam transaksi tersebut.
 
 ### Contoh Penggunaan
 
@@ -186,13 +186,13 @@ public class MyService {
 
 # noRollbackForClassName
 
-noRollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang tidak akan menyebabkan rollback transaksi. Ini mirip dengan noRollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan Anda untuk menentukan exception berdasarkan nama mereka.
+noRollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang tidak akan menyebabkan rollback transaksi. Ini mirip dengan noRollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan kita untuk menentukan exception berdasarkan nama mereka.
 
 noRollbackForClassName mendefinisikan satu atau lebih nama class exception (dalam bentuk string) yang tidak akan menyebabkan rollback transaksi ketika exception tersebut dilemparkan. Nama exception harus merupakan subclass dari Throwable.
 
-Kadang-kadang, Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi, terutama jika exception tersebut hanya mewakili kondisi kesalahan tertentu yang tidak memerlukan rollback. noRollbackForClassName memungkinkan Anda untuk menentukan exception-exception tersebut berdasarkan nama mereka.
+Kadang-kadang, kita mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi, terutama jika exception tersebut hanya mewakili kondisi kesalahan tertentu yang tidak memerlukan rollback. noRollbackForClassName memungkinkan kita untuk menentukan exception-exception tersebut berdasarkan nama mereka.
 
-noRollbackForClassName biasanya digunakan ketika Anda ingin menggunakan nama class exception sebagai string, yang bisa berguna jika Anda ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika Anda ingin menghindari ketergantungan langsung pada class exception tertentu.
+noRollbackForClassName biasanya digunakan ketika kita ingin menggunakan nama class exception sebagai string, yang bisa berguna jika kita ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika kita ingin menghindari ketergantungan langsung pada class exception tertentu.
 
 ### Contoh Penggunaan
 
@@ -228,7 +228,7 @@ Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel
 - REQUIRED: Propagation default. Jika ada transaksi aktif, metode akan dijalankan dalam transaksi tersebut. Jika tidak ada transaksi, akan memulai transaksi baru.
 - REQUIRES_NEW: Selalu memulai transaksi baru. Jika ada transaksi aktif, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
 - NESTED: Memulai transaksi baru dalam transaksi utama yang ada. Transaksi baru ini adalah "nested" di dalam transaksi utama. Jika transaksi nested di-rollback, hanya nested transaction yang akan di-rollback, sedangkan transaksi utama tetap berjalan.
-- MANDATORY: Mendukung transaksi saat ini. Jika tidak ada transaksi yang ada, akan melempar exception.
+- MkitaTORY: Mendukung transaksi saat ini. Jika tidak ada transaksi yang ada, akan melempar exception.
 - NEVER: Tidak boleh menjalankan transaksi. Jika ada transaksi yang ada, akan melempar exception.
 - NOT_SUPPORTED: Tidak mendukung transaksi saat ini. Jika ada transaksi yang ada, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
 - SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru. Metode ini bisa berjalan di dalam atau di luar konteks transaksi.
@@ -238,7 +238,7 @@ Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel
 @Service
 public class MyService {
 
-    // REQUIRED || REQUIRES_NEW || NESTED || MANDATORY || NEVER || NOT_SUPPORTED || SUPPORTS
+    // REQUIRED || REQUIRES_NEW || NESTED || MkitaTORY || NEVER || NOT_SUPPORTED || SUPPORTS
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void methodRequired() {
@@ -252,7 +252,7 @@ readOnly adalah elemen opsional dalam anotasi @Transactional di Spring Framework
 
 readOnly adalah sebuah flag boolean yang dapat diatur ke true jika transaksi tersebut hanya akan melakukan operasi baca saja.
 
-Menandai transaksi sebagai read-only dapat membantu dalam mengoptimalkan performa transaksi karena database dapat menghindari beberapa mekanisme penguncian dan logging yang diperlukan untuk operasi tulis.
+Menkitai transaksi sebagai read-only dapat membantu dalam mengoptimalkan performa transaksi karena database dapat menghindari beberapa mekanisme penguncian dan logging yang diperlukan untuk operasi tulis.
 
 readOnly biasanya digunakan pada metode yang hanya melakukan operasi baca pada database, seperti mengambil data tanpa mengubahnya.
 
@@ -273,13 +273,13 @@ public class MyService {
 
 # rollbackFor
 
-rollbackFor adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan jenis-jenis exception yang harus menyebabkan rollback transaksi. Dengan menggunakan rollbackFor, Anda dapat mengatur exception mana yang harus memicu rollback meskipun secara default mungkin tidak.
+rollbackFor adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan jenis-jenis exception yang harus menyebabkan rollback transaksi. Dengan menggunakan rollbackFor, kita dapat mengatur exception mana yang harus memicu rollback meskipun secara default mungkin tidak.
 
 rollbackFor mendefinisikan satu atau lebih jenis exception yang, ketika dilemparkan, akan menyebabkan rollback transaksi. Exception ini harus merupakan subclass dari Throwable.
 
 Tujuan dari rollbackFor adalah untuk memberikan kontrol lebih besar atas rollback transaksi, memungkinkan developer untuk menentukan exception spesifik yang harus menyebabkan rollback.
 
-rollbackFor biasanya digunakan ketika Anda ingin memastikan bahwa transaksi di-rollback untuk jenis exception tertentu yang mungkin tidak menyebabkan rollback secara default (misalnya, checked exceptions).
+rollbackFor biasanya digunakan ketika kita ingin memastikan bahwa transaksi di-rollback untuk jenis exception tertentu yang mungkin tidak menyebabkan rollback secara default (misalnya, checked exceptions).
 
 ### Contoh Penggunaan
 
@@ -303,13 +303,13 @@ public class MyService {
 
 # rollbackForClassName
 
-rollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang harus menyebabkan rollback transaksi. Ini mirip dengan rollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan Anda untuk menentukan exception berdasarkan nama mereka.
+rollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang harus menyebabkan rollback transaksi. Ini mirip dengan rollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan kita untuk menentukan exception berdasarkan nama mereka.
 
 rollbackForClassName mendefinisikan satu atau lebih nama class exception (dalam bentuk string) yang harus menyebabkan rollback transaksi ketika exception tersebut dilemparkan. Nama exception harus merupakan subclass dari Throwable.
 
-Tujuan dari rollbackForClassName adalah untuk memberikan kontrol lebih besar atas rollback transaksi, memungkinkan developer untuk menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika Anda ingin menghindari ketergantungan langsung pada class exception tertentu.
+Tujuan dari rollbackForClassName adalah untuk memberikan kontrol lebih besar atas rollback transaksi, memungkinkan developer untuk menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika kita ingin menghindari ketergantungan langsung pada class exception tertentu.
 
-rollbackForClassName biasanya digunakan ketika Anda ingin menggunakan nama class exception sebagai string, yang bisa berguna jika Anda ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika Anda ingin menghindari ketergantungan langsung pada class exception tertentu.
+rollbackForClassName biasanya digunakan ketika kita ingin menggunakan nama class exception sebagai string, yang bisa berguna jika kita ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika kita ingin menghindari ketergantungan langsung pada class exception tertentu.
 
 ### Contoh Penggunaan
 
@@ -355,13 +355,13 @@ public class MyService {
 ```
 
 # timeoutString
-timeoutString adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang memungkinkan Anda untuk menentukan batas waktu transaksi sebagai string. Ini berguna jika Anda ingin mengatur nilai timeout secara dinamis melalui konfigurasi atau variabel lingkungan.
+timeoutString adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang memungkinkan kita untuk menentukan batas waktu transaksi sebagai string. Ini berguna jika kita ingin mengatur nilai timeout secara dinamis melalui konfigurasi atau variabel lingkungan.
 
 timeoutString adalah sebuah string yang menentukan batas waktu maksimal dalam detik untuk sebuah transaksi sebelum dianggap gagal dan di-rollback. Nilai ini biasanya diambil dari konfigurasi atau variabel lingkungan.
 
 Tujuan dari timeoutString adalah memberikan fleksibilitas dalam mengatur batas waktu transaksi tanpa harus mengubah kode sumber. Ini memungkinkan penyesuaian waktu transaksi berdasarkan kondisi runtime atau konfigurasi yang mudah diubah.
 
-timeoutString digunakan ketika Anda ingin mengatur batas waktu transaksi secara dinamis, biasanya melalui file konfigurasi seperti application.properties atau application.yml, atau melalui variabel lingkungan.
+timeoutString digunakan ketika kita ingin mengatur batas waktu transaksi secara dinamis, biasanya melalui file konfigurasi seperti application.properties atau application.yml, atau melalui variabel lingkungan.
 
 ### Contoh Penggunaan
 
@@ -378,13 +378,13 @@ public class MyService {
 
 # transactionManager
 
-transactionManager adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang digunakan untuk menentukan nama TransactionManager yang akan digunakan oleh transaksi tersebut. Ini berguna ketika Anda memiliki lebih dari satu TransactionManager yang dikonfigurasi dalam aplikasi Anda dan Anda perlu menentukan yang mana yang akan digunakan untuk transaksi tertentu.
+transactionManager adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang digunakan untuk menentukan nama TransactionManager yang akan digunakan oleh transaksi tersebut. Ini berguna ketika kita memiliki lebih dari satu TransactionManager yang dikonfigurasi dalam aplikasi kita dan kita perlu menentukan yang mana yang akan digunakan untuk transaksi tertentu.
 
 transactionManager menentukan nama TransactionManager yang harus digunakan untuk transaksi ini. Nama ini harus sesuai dengan nama bean dari TransactionManager yang dikonfigurasi dalam konteks Spring.
 
 Tujuan dari transactionManager adalah untuk memberikan fleksibilitas dalam memilih TransactionManager yang sesuai saat mengelola transaksi, terutama dalam aplikasi yang menggunakan lebih dari satu sumber data atau jenis transaksi yang berbeda.
 
-transactionManager digunakan ketika Anda perlu menentukan TransactionManager tertentu untuk transaksi, biasanya dalam aplikasi yang memiliki konfigurasi multi-sumber data atau jenis transaksi yang berbeda (misalnya, transaksi JPA dan transaksi JMS).
+transactionManager digunakan ketika kita perlu menentukan TransactionManager tertentu untuk transaksi, biasanya dalam aplikasi yang memiliki konfigurasi multi-sumber data atau jenis transaksi yang berbeda (misalnya, transaksi JPA dan transaksi JMS).
 
 ### Contoh Penggunaan
 
@@ -406,7 +406,7 @@ public class DataSourceConfig {
 
 # value
 
-value adalah sebuah alias untuk elemen transactionManager dalam anotasi @Transactional di Spring Framework. Ini memungkinkan Anda untuk menentukan TransactionManager yang akan digunakan untuk transaksi tanpa perlu menuliskan kata kunci transactionManager secara eksplisit.
+value adalah sebuah alias untuk elemen transactionManager dalam anotasi @Transactional di Spring Framework. Ini memungkinkan kita untuk menentukan TransactionManager yang akan digunakan untuk transaksi tanpa perlu menuliskan kata kunci transactionManager secara eksplisit.
 
 value adalah sebuah string yang menentukan nama TransactionManager yang harus digunakan untuk transaksi ini. Nama ini harus sesuai dengan nama bean dari TransactionManager yang dikonfigurasi dalam konteks Spring.
 
