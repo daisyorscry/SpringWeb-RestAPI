@@ -33,7 +33,7 @@ Penggunaan Transaksi:
 
 ## Isolation (The transaction isolation level.)
 
-# Skenario
+## Skenario
 
 Kita akan menggunakan dua transaksi (Transaction A dan Transaction B) untuk menguji perilaku berbagai level isolasi.
 Pengaturan Awal:
@@ -57,50 +57,68 @@ Skenario:
 
 Hasil:
 
-# Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
+Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
 
-Level Isolasi: READ_COMMITTED
+## Level Isolasi: READ_COMMITTED
+
 Deskripsi:
+
 Level isolasi ini mencegah dirty reads. Transaksi hanya dapat melihat data yang telah di-commit oleh transaksi lain.
 Skenario:
-Transaction A memulai dan membaca quantity dari Product dengan id=1.
-Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
-Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 100 (tidak melihat perubahan yang belum di-commit).
-Transaction B melakukan commit.
-Transaction A membaca kembali quantity dan melihat nilai 120.
+
+- Transaction A memulai dan membaca quantity dari Product dengan id=1.
+- Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
+- Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 100 (tidak melihat perubahan yang belum di-commit).
+- Transaction B melakukan commit.
+- Transaction A membaca kembali quantity dan melihat nilai 120.
+
 Hasil:
+
 Transaction A hanya melihat perubahan setelah Transaction B melakukan commit.
-Level Isolasi: REPEATABLE_READ
+
+## Level Isolasi: REPEATABLE_READ
+
 Deskripsi:
+
 Level isolasi ini mencegah dirty reads dan non-repeatable reads. Transaksi akan melihat data yang konsisten pada setiap baca selama transaksi berlangsung.
 Skenario:
-Transaction A memulai dan membaca quantity dari Product dengan id=1.
-Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
-Transaction A membaca kembali quantity dari Product dengan id=1 dan masih melihat nilai 100.
-Transaction B melakukan commit.
-Transaction A membaca kembali quantity dan tetap melihat nilai 100 hingga transaksi selesai.
-Hasil:
-Transaction A melihat data yang sama di setiap baca meskipun 
-Transaction B telah melakukan commit.
 
-Level Isolasi: SERIALIZABLE
+- Transaction A memulai dan membaca quantity dari Product dengan id=1.
+- Transaction B memulai dan mengubah quantity dari Product dengan id=1 menjadi 120 tetapi belum di-commit.
+- Transaction A membaca kembali quantity dari Product dengan id=1 dan masih melihat nilai 100.
+- Transaction B melakukan commit.
+- Transaction A membaca kembali quantity dan tetap melihat nilai 100 hingga transaksi selesai.
+
+Hasil:
+
+- Transaction A melihat data yang sama di setiap baca meskipun 
+- Transaction B telah melakukan commit.
+
+## Level Isolasi: SERIALIZABLE
+
 Deskripsi:
+
 Level isolasi ini adalah yang tertinggi dan mencegah dirty reads, non-repeatable reads, dan phantom reads. Transaksi dieksekusi seolah-olah secara serial.
 Skenario:
-Transaction A memulai dan membaca quantity dari Product dengan id=1.
-Transaction B memulai dan mencoba mengubah quantity dari Product dengan id=1 menjadi 120 tetapi harus menunggu hingga Transaction A selesai.
-Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 100.
-Transaction A selesai dan melakukan commit.
-Transaction B sekarang dapat melanjutkan dan melakukan perubahan.
-Hasil:
-Transaction B harus menunggu hingga Transaction A selesai sebelum melakukan perubahan.
-Kesimpulan
-READ_UNCOMMITTED: Memungkinkan dirty reads, memberikan performa tertinggi tetapi konsistensi data terendah.
-READ_COMMITTED: Mencegah dirty reads, cukup sering digunakan karena kompromi antara konsistensi dan performa.
-REPEATABLE_READ: Mencegah dirty reads dan non-repeatable reads, memberikan konsistensi yang lebih tinggi dengan sedikit penurunan performa.
-SERIALIZABLE: Mencegah dirty reads, non-repeatable reads, dan phantom reads, memberikan konsistensi tertinggi dengan performa terendah.
 
-Label (Defines zero (0) or more transaction labels.)
+- Transaction A memulai dan membaca quantity dari Product dengan id=1.
+- Transaction B memulai dan mencoba mengubah quantity dari Product dengan id=1 menjadi 120 tetapi harus menunggu hingga Transaction A selesai.
+- Transaction A membaca kembali quantity dari Product dengan id=1 dan melihat nilai 100.
+- Transaction A selesai dan melakukan commit.
+- Transaction B sekarang dapat melanjutkan dan melakukan perubahan.
+
+Hasil:
+
+- Transaction B harus menunggu hingga Transaction A selesai sebelum melakukan perubahan.
+
+Kesimpulan
+
+- READ_UNCOMMITTED: Memungkinkan dirty reads, memberikan performa tertinggi tetapi konsistensi data terendah.
+- READ_COMMITTED: Mencegah dirty reads, cukup sering digunakan karena kompromi antara konsistensi dan performa.
+- REPEATABLE_READ: Mencegah dirty reads dan non-repeatable reads, memberikan konsistensi yang lebih tinggi dengan sedikit penurunan performa.
+- SERIALIZABLE: Mencegah dirty reads, non-repeatable reads, dan phantom reads, memberikan konsistensi tertinggi dengan performa terendah.
+
+### Label (Defines zero (0) or more transaction labels.)
 
 Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
 
