@@ -31,7 +31,9 @@ Penggunaan Transaksi:
 
 # Property dalam anotasi @Transaction
 
-# Isolation (The transaction isolation level.)
+# Isolation 
+
+(The transaction isolation level.)
 
 ### Contoh Penggunaan
 
@@ -146,6 +148,7 @@ Kesimpulan
 - Konfigurasi Lebih Lanjut: Label sering digunakan bersama dengan anotasi atau konfigurasi lainnya untuk transaksi, seperti timeout, jenis propagasi, tingkat isolasi, dan aturan rollback. Ini memungkinkan Anda untuk secara fleksibel mengatur perilaku transaksi yang berbeda berdasarkan kebutuhan bisnis Anda.
 
 ### Contoh Penggunaan
+
 ```
 @Transactional("transactionManager")
 public void processPayment(TransactionRequest request) {
@@ -153,7 +156,9 @@ public void processPayment(TransactionRequest request) {
 }
 ```
 
-## noRollbackFor (Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
+# noRollbackFor 
+
+(Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
 
 - Definisi:
 
@@ -166,4 +171,98 @@ Kadang-kadang Anda mungkin ingin menangani beberapa exception tanpa membatalkan 
 - Penggunaan:
 
 noRollbackFor biasanya digunakan ketika Anda ingin melanjutkan transaksi atau menangani exception secara khusus tanpa kehilangan semua pekerjaan yang sudah dilakukan dalam transaksi tersebut.
+
+### Contoh Penggunaan
+
+```
+@Service
+public class MyService {
+
+    @Transactional(noRollbackFor = CustomException.class)
+    public void performTransaction() {
+        // Kode transaksi
+
+        // Exception yang tidak menyebabkan rollback
+        if (someCondition) {
+            throw new CustomException("Custom exception occurred");
+        }
+
+        // Kode transaksi lebih lanjut
+    }
+}
+```
+
+# noRollbackForClassName
+
+Defines zero (0) or more exception name patterns (for exceptions which must be a subclass of Throwable) indicating which exception types must not cause a transaction rollback.
+
+noRollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang tidak akan menyebabkan rollback transaksi. Ini mirip dengan noRollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan Anda untuk menentukan exception berdasarkan nama mereka.
+
+- Definisi:
+
+noRollbackForClassName mendefinisikan satu atau lebih nama class exception (dalam bentuk string) yang tidak akan menyebabkan rollback transaksi ketika exception tersebut dilemparkan. Nama exception harus merupakan subclass dari Throwable.
+
+- Tujuan:
+
+Kadang-kadang, Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi, terutama jika exception tersebut hanya mewakili kondisi kesalahan tertentu yang tidak memerlukan rollback. noRollbackForClassName memungkinkan Anda untuk menentukan exception-exception tersebut berdasarkan nama mereka.
+
+- Penggunaan:
+
+noRollbackForClassName biasanya digunakan ketika Anda ingin menggunakan nama class exception sebagai string, yang bisa berguna jika Anda ingin menentukan exception yang mungkin tidak ada dalam classpath saat waktu kompilasi atau jika Anda ingin menghindari ketergantungan langsung pada class exception tertentu.
+
+### Contoh Penggunaan
+
+```
+@Service
+public class MyService {
+
+    @Transactional(noRollbackForClassName = "com.example.CustomException")
+    public void performTransaction() {
+        // Kode transaksi
+
+        // Exception yang tidak menyebabkan rollback
+        if (someCondition) {
+            throw new CustomException("Custom exception occurred");
+        }
+
+        // Kode transaksi lebih lanjut
+    }
+}
+
+```
+
+#Propagation
+
+propagation adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan bagaimana transaksi harus disebarkan atau dikelola ketika metode beranotasi dipanggil. Ini mengatur bagaimana transaksi baru harus dimulai atau transaksi yang sudah ada harus digunakan atau diubah.
+
+- Definisi:
+
+propagation mengatur perilaku transaksi saat metode yang beranotasi dipanggil dalam konteks transaksi yang sudah ada atau tidak ada. Ini menentukan apakah harus memulai transaksi baru, menggunakan transaksi yang ada, atau berbagai perilaku lainnya.
+
+- Tujuan:
+
+Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel, memungkinkan integrasi yang tepat antara berbagai bagian aplikasi dan penanganan skenario transaksi yang kompleks.
+
+- Jenis-jenis Propagation:
+
+-- REQUIRED: Mendukung transaksi saat ini, atau memulai transaksi baru jika belum ada transaksi yang ada.
+-- REQUIRES_NEW: Selalu memulai transaksi baru, menangguhkan transaksi yang ada jika ada.
+-- NESTED: Memulai transaksi baru dalam transaksi utama yang ada.
+-- MANDATORY: Mendukung transaksi saat ini, atau melempar exception jika tidak ada transaksi yang ada.
+-- NEVER: Tidak boleh menjalankan transaksi, melempar exception jika ada transaksi yang ada.
+-- NOT_SUPPORTED: Tidak mendukung transaksi saat ini, menangguhkan transaksi jika ada.
+-- SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru.
+
+### Contoh Penggunaan
+``` 
+@Service
+public class MyService {
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void methodRequired() {
+        // Kode transaksi
+    }
+}
+```
+
 
