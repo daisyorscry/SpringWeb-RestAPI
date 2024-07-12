@@ -228,7 +228,7 @@ Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel
 - REQUIRED: Propagation default. Jika ada transaksi aktif, metode akan dijalankan dalam transaksi tersebut. Jika tidak ada transaksi, akan memulai transaksi baru.
 - REQUIRES_NEW: Selalu memulai transaksi baru. Jika ada transaksi aktif, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
 - NESTED: Memulai transaksi baru dalam transaksi utama yang ada. Transaksi baru ini adalah "nested" di dalam transaksi utama. Jika transaksi nested di-rollback, hanya nested transaction yang akan di-rollback, sedangkan transaksi utama tetap berjalan.
-- MkitaTORY: Mendukung transaksi saat ini. Jika tidak ada transaksi yang ada, akan melempar exception.
+- MANDATORY: Mendukung transaksi saat ini. Jika tidak ada transaksi yang ada, akan melempar exception.
 - NEVER: Tidak boleh menjalankan transaksi. Jika ada transaksi yang ada, akan melempar exception.
 - NOT_SUPPORTED: Tidak mendukung transaksi saat ini. Jika ada transaksi yang ada, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
 - SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru. Metode ini bisa berjalan di dalam atau di luar konteks transaksi.
