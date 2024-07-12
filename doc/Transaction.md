@@ -1,26 +1,33 @@
-TRANSACTIONAL
-Spring Data JPA
+### TRANSACTIONAL
 
-Annotation Interface Transactional
-Package org.springframework.transaction.annotation
+## Spring Data JPA
 
-Konsep dasar Transaction
+# Annotation Interface Transactional
+# Package org.springframework.transaction.annotation
+
+### Konsep dasar Transaction
 
 ACID Properties:
-Atomicity: Seluruh operasi dalam transaksi dijalankan secara penuh atau tidak sama sekali. Jika salah satu operasi gagal, maka seluruh transaksi dibatalkan (rollback).
-Consistency: Transaksi harus membawa database dari satu keadaan yang konsisten ke keadaan konsisten lainnya.
-Isolation: Transaksi dijalankan secara independen, sehingga hasil dari transaksi yang sedang berlangsung tidak terlihat oleh transaksi lain sampai transaksi tersebut selesai.
-Durability: Hasil dari transaksi yang berhasil dijalankan harus disimpan secara permanen dalam basis data, bahkan jika terjadi kegagalan sistem setelah transaksi selesai.
+
+- Atomicity: Seluruh operasi dalam transaksi dijalankan secara penuh atau tidak sama sekali. Jika salah satu operasi gagal, maka seluruh transaksi dibatalkan (rollback).
+- Consistency: Transaksi harus membawa database dari satu keadaan yang konsisten ke keadaan konsisten lainnya.
+- Isolation: Transaksi dijalankan secara independen, sehingga hasil dari transaksi yang sedang berlangsung tidak terlihat oleh transaksi lain sampai transaksi tersebut selesai.
+- Durability: Hasil dari transaksi yang berhasil dijalankan harus disimpan secara permanen dalam basis data, bahkan jika terjadi kegagalan sistem setelah transaksi selesai.
+  
 Commit dan Rollback:
-Commit: Mengakhiri transaksi dengan menyimpan semua perubahan yang telah dibuat. Setelah commit, perubahan menjadi permanen.
-Rollback: Membatalkan transaksi dengan mengembalikan basis data ke keadaan sebelum transaksi dimulai.
+
+- Commit: Mengakhiri transaksi dengan menyimpan semua perubahan yang telah dibuat. Setelah commit, perubahan menjadi permanen.
+- Rollback: Membatalkan transaksi dengan mengembalikan basis data ke keadaan sebelum transaksi dimulai.
+
 Penggunaan Transaksi:
-Dalam SQL: Transaksi biasanya dimulai dengan perintah BEGIN TRANSACTION, diakhiri dengan COMMIT untuk menyimpan perubahan atau ROLLBACK untuk membatalkan perubahan.
-Dalam Pemrograman: Berbagai bahasa pemrograman dan framework menyediakan dukungan untuk transaksi. Misalnya, dalam Java dengan Spring Framework, transaksi dapat dikelola dengan anotasi @Transactional.
-Saat kita menggunakan JPA secara manual, kita harus melakukan management transaction secara manual menggunakan EntityManager
-Spring menyediakan fitur Declarative Transaction, yaitu management transaction secara declarative, yaitu dengan menggunakan annotation @Transactional
-Annotation ini secara otomatis dibaca oleh Spring AOP, dan akan menjalankan transaction secara otomatis ketika memanggil method yang terdapat annotation @Transactional nya
-https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html 
+
+- Dalam SQL: Transaksi biasanya dimulai dengan perintah BEGIN TRANSACTION, diakhiri dengan COMMIT untuk menyimpan perubahan atau ROLLBACK untuk membatalkan perubahan.
+- Dalam Pemrograman: Berbagai bahasa pemrograman dan framework menyediakan dukungan untuk transaksi. Misalnya, dalam Java dengan Spring Framework, transaksi dapat dikelola dengan anotasi @Transactional.
+- Saat kita menggunakan JPA secara manual, kita harus melakukan management transaction secara manual menggunakan EntityManager
+- Spring menyediakan fitur Declarative Transaction, yaitu management transaction secara declarative, yaitu dengan menggunakan annotation @Transactional
+- Annotation ini secara otomatis dibaca oleh Spring AOP, dan akan menjalankan transaction secara otomatis ketika memanggil method yang terdapat annotation @Transactional nya
+
+# https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html 
 
 
 
