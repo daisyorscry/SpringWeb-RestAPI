@@ -139,7 +139,7 @@ Kesimpulan
 - REPEATABLE_READ: Mencegah dirty reads dan non-repeatable reads, memberikan konsistensi yang lebih tinggi dengan sedikit penurunan performa.
 - SERIALIZABLE: Mencegah dirty reads, non-repeatable reads, dan phantom reads, memberikan konsistensi tertinggi dengan performa terendah.
 
-# Label (Defines zero (0) or more transaction labels.)
+# Label 
 
 - Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
 
@@ -157,8 +157,6 @@ public void processPayment(TransactionRequest request) {
 ```
 
 # noRollbackFor 
-
-(Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
 
 noRollbackFor mendefinisikan satu atau lebih jenis exception yang, ketika dilemparkan, tidak akan menyebabkan rollback transaksi. Exception ini harus merupakan subclass dari Throwable.
 
@@ -187,8 +185,6 @@ public class MyService {
 ```
 
 # noRollbackForClassName
-
-Defines zero (0) or more exception name patterns (for exceptions which must be a subclass of Throwable) indicating which exception types must not cause a transaction rollback.
 
 noRollbackForClassName adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan pola nama exception yang tidak akan menyebabkan rollback transaksi. Ini mirip dengan noRollbackFor, tetapi menggunakan nama class exception dalam bentuk string, memungkinkan Anda untuk menentukan exception berdasarkan nama mereka.
 
