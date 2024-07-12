@@ -3,7 +3,7 @@
 ## Spring Data JPA
 
 # Annotation Interface Transactional
-# Package org.springframework.transaction.annotation
+### Package org.springframework.transaction.annotation
 
 ### Konsep dasar Transaction
 
@@ -27,11 +27,11 @@ Penggunaan Transaksi:
 - Spring menyediakan fitur Declarative Transaction, yaitu management transaction secara declarative, yaitu dengan menggunakan annotation @Transactional
 - Annotation ini secara otomatis dibaca oleh Spring AOP, dan akan menjalankan transaction secara otomatis ketika memanggil method yang terdapat annotation @Transactional nya
 
-# https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html 
+### https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html 
 
-### Property dalam anotasi @Transaction
+# Property dalam anotasi @Transaction
 
-### Isolation (The transaction isolation level.)
+# Isolation (The transaction isolation level.)
 
 ## Skenario
 
@@ -43,7 +43,7 @@ Di dalam database, terdapat tabel Product dengan satu baris data:
 - name: "Product A"
 - quantity: 100
 
-## Level Isolasi: READ_UNCOMMITTED
+### Level Isolasi: READ_UNCOMMITTED
 
 Deskripsi:
 
@@ -59,7 +59,7 @@ Hasil:
 
 Transaction A melihat nilai quantity yang belum di-commit oleh Transaction B.
 
-## Level Isolasi: READ_COMMITTED
+### Level Isolasi: READ_COMMITTED
 
 Deskripsi:
 
@@ -76,7 +76,7 @@ Hasil:
 
 Transaction A hanya melihat perubahan setelah Transaction B melakukan commit.
 
-## Level Isolasi: REPEATABLE_READ
+### Level Isolasi: REPEATABLE_READ
 
 Deskripsi:
 
@@ -94,7 +94,7 @@ Hasil:
 - Transaction A melihat data yang sama di setiap baca meskipun 
 - Transaction B telah melakukan commit.
 
-## Level Isolasi: SERIALIZABLE
+### Level Isolasi: SERIALIZABLE
 
 Deskripsi:
 
@@ -118,7 +118,7 @@ Kesimpulan
 - REPEATABLE_READ: Mencegah dirty reads dan non-repeatable reads, memberikan konsistensi yang lebih tinggi dengan sedikit penurunan performa.
 - SERIALIZABLE: Mencegah dirty reads, non-repeatable reads, dan phantom reads, memberikan konsistensi tertinggi dengan performa terendah.
 
-### Label (Defines zero (0) or more transaction labels.)
+# Label (Defines zero (0) or more transaction labels.)
 
 Identifikasi Transaksi: Label digunakan untuk mengidentifikasi atau memberi nama pada transaksi tertentu. Ini memungkinkan Anda untuk membedakan satu transaksi dengan transaksi lainnya dalam kasus di mana Anda memiliki banyak transaksi dengan konfigurasi yang mirip.
 
