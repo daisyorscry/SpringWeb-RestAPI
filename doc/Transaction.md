@@ -241,18 +241,20 @@ Tujuannya adalah untuk mengontrol manajemen transaksi dengan cara yang fleksibel
 
 - Jenis-jenis Propagation:
 
-- REQUIRED: Mendukung transaksi saat ini, atau memulai transaksi baru jika belum ada transaksi yang ada.
-- REQUIRES_NEW: Selalu memulai transaksi baru, menangguhkan transaksi yang ada jika ada.
-- NESTED: Memulai transaksi baru dalam transaksi utama yang ada.
-- MANDATORY: Mendukung transaksi saat ini, atau melempar exception jika tidak ada transaksi yang ada.
-- NEVER: Tidak boleh menjalankan transaksi, melempar exception jika ada transaksi yang ada.
-- NOT_SUPPORTED: Tidak mendukung transaksi saat ini, menangguhkan transaksi jika ada.
-- SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru.
+- REQUIRED: Propagation default. Jika ada transaksi aktif, metode akan dijalankan dalam transaksi tersebut. Jika tidak ada transaksi, akan memulai transaksi baru.
+- REQUIRES_NEW: Selalu memulai transaksi baru. Jika ada transaksi aktif, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
+- NESTED: Memulai transaksi baru dalam transaksi utama yang ada. Transaksi baru ini adalah "nested" di dalam transaksi utama. Jika transaksi nested di-rollback, hanya nested transaction yang akan di-rollback, sedangkan transaksi utama tetap berjalan.
+- MANDATORY: Mendukung transaksi saat ini. Jika tidak ada transaksi yang ada, akan melempar exception.
+- NEVER: Tidak boleh menjalankan transaksi. Jika ada transaksi yang ada, akan melempar exception.
+- NOT_SUPPORTED: Tidak mendukung transaksi saat ini. Jika ada transaksi yang ada, transaksi tersebut akan ditangguhkan selama metode ini berjalan.
+- SUPPORTS: Mendukung transaksi saat ini jika ada, tetapi tidak memulai transaksi baru. Metode ini bisa berjalan di dalam atau di luar konteks transaksi.
 
 ### Contoh Penggunaan
 ``` 
 @Service
 public class MyService {
+
+    // REQUIRED || REQUIRES_NEW || NESTED || MANDATORY || NEVER || NOT_SUPPORTED || SUPPORTS
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void methodRequired() {
