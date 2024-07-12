@@ -31,7 +31,7 @@ Penggunaan Transaksi:
 
 ### Property dalam anotasi @Transaction
 
-## Isolation (The transaction isolation level.)
+### Isolation (The transaction isolation level.)
 
 ## Skenario
 
