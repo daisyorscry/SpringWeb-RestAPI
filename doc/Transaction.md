@@ -335,7 +335,7 @@ public class MyService {
 }
 ```
 
-#timeout
+# timeout
 
 timeout adalah elemen opsional dalam anotasi @Transactional di Spring Framework yang menentukan batas waktu (dalam detik) untuk sebuah transaksi. Jika transaksi tidak selesai dalam jangka waktu yang ditentukan, transaksi tersebut akan di-rollback secara otomatis oleh manajer transaksi.
 
