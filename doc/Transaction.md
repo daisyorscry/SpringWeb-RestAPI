@@ -36,7 +36,8 @@ Penggunaan Transaksi:
 ### Contoh Penggunaan
 
 ```
-/// || DEFAULT || READ_UNCOMMITTED || READ_COMMITTED, REPEATABLE_READ ||  SERIALIZABLE
+// || DEFAULT || READ_UNCOMMITTED || READ_COMMITTED, REPEATABLE_READ ||  SERIALIZABLE
+
 @Transactional(isolation = Isolation.REPEATABLE_READ) 
 public void processPayment(TransactionRequest request) {
     // Proses pembayaran
@@ -152,12 +153,17 @@ public void processPayment(TransactionRequest request) {
 }
 ```
 
-noRollbackFor (Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
+## noRollbackFor (Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must not cause a transaction rollback.)
 
-Definisi:
+- Definisi:
+
 noRollbackFor mendefinisikan satu atau lebih jenis exception yang, ketika dilemparkan, tidak akan menyebabkan rollback transaksi. Exception ini harus merupakan subclass dari Throwable.
-Tujuan:
+
+- Tujuan:
+
 Kadang-kadang Anda mungkin ingin menangani beberapa exception tanpa membatalkan semua perubahan dalam transaksi. noRollbackFor memungkinkan Anda untuk menentukan exception-exception yang tidak perlu menyebabkan rollback, sehingga beberapa perubahan dapat tetap dipertahankan meskipun terjadi exception tertentu.
-Penggunaan:
+
+- Penggunaan:
+
 noRollbackFor biasanya digunakan ketika Anda ingin melanjutkan transaksi atau menangani exception secara khusus tanpa kehilangan semua pekerjaan yang sudah dilakukan dalam transaksi tersebut.
 
