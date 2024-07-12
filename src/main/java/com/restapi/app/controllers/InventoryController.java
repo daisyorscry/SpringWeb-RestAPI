@@ -33,13 +33,13 @@ public class InventoryController {
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<String> createInventory(@RequestBody CreateInventoryRequest request, User user) {
-        Inventory inventory = inventoryService.createInventory(request);;
+    public ResponseEntity<String> createInventory(@RequestBody CreateInventoryRequest request) {
+        inventoryService.createInventory(request);;
         return ResponseEntity.ok("create inventory success");
     }
 
     @GetMapping
-    public ResponseData<List<InventoryResponse>> getAllInventory(User user) {
+    public ResponseData<List<InventoryResponse>> getAllInventory() {
         List<InventoryResponse> inventoryResponses = inventoryService.getAllInventory();
             return ResponseData.<List<InventoryResponse>>builder()
             .data(inventoryResponses)
@@ -54,7 +54,7 @@ public class InventoryController {
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<String> chanceStock(@RequestBody StockChanceRequest request, User user)
+    public ResponseEntity<String> chanceStock(@RequestBody StockChanceRequest request)
     {
         try{
             inventoryService.chanceStock(request);

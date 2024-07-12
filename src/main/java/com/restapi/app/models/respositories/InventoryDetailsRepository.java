@@ -14,4 +14,3 @@ public interface InventoryDetailsRepository extends JpaRepository<InventoryDetai
 
     Optional<InventoryDetails> findByInventory(Inventory inventory);
 }
-

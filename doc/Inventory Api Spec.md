@@ -36,7 +36,10 @@
       "productDesc": "this is product B",
       "price": 300000.0,
       "stock": 0,
-      "status": "LOST",
+      "sta
+
+
+tus": "LOST",
       "createdByUsername": "admin",
       "createdAt": "2024-07-09T15:56:45.338313"
     },

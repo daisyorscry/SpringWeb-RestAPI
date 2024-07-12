@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StockChanceRequest 
 {
-    private Long productId;
+    private Long inventoryId;
     
     private String chanceType;
 

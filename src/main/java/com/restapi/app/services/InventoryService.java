@@ -3,6 +3,7 @@ package com.restapi.app.services;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import com.restapi.app.dto.Requests.Products.CreateInventoryRequest;
 import com.restapi.app.dto.Requests.Products.StockChanceRequest;
@@ -89,12 +90,13 @@ public class InventoryService {
         .build();
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(
+        rollbackFor = Exception.class,
+        isolation =   Isolation.READ_COMMITTED
+        )
     public void chanceStock( StockChanceRequest request) {
 
-        validationService.validate(request);
-
-        Inventory inventory = inventoryRepository.findById(request.getProductId())
+        Inventory inventory = inventoryRepository.findById(request.getInventoryId())
                 .orElseThrow(() -> new RuntimeException("Inventory not found")); 
         
         int newStock = request.getQuantity();

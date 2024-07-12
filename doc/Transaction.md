@@ -25,26 +25,6 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Property dalam anotasi @Transaction
 
 Isolation (The transaction isolation level.)
